@@ -19,14 +19,14 @@ def scramble(a, axis=-1):
     return shuffled
 
 
-#date, n_naive, crit for signatures similarity, crit for true similarity
-def main(d, n_naive, crit1, crit2):
+#data, how many times must user appear, crit for signatures similarity, crit for true similarity
+def main(d, N, crit1, crit2):
 
-    #Find the indices of items that appear less than n_naive times in the training data
+    #Find the indices of items that appear less than N times in the training data
 
     unique, counts = np.unique(d['col0'], return_counts=True)
     unique = dict(zip(unique, counts))
-    index = [k for k,v in unique.items() if int(v) in range(1, n_naive) ]
+    index = [k for k,v in unique.items() if int(v) in range(1, N) ]
 
     #find indexing
     d = d[~d['col0'].isin(index)]
@@ -158,6 +158,6 @@ ratings2 = np.delete(ratings2, 2, axis =1)
 ratings2 = pd.DataFrame(ratings2,
          columns = ["col0", "col1"])      
 
-#Run algortrithm with extra parameter n_naive
+#Run algortrithm 
 main(ratings2, 2, 0.4, 0.2)
 
