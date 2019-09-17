@@ -6,10 +6,10 @@ This algorithm finds similar customers in the Yelp dataset review data: https://
 The ratings itself are deleted. We subsequently only want to find similar customers, namely customers that rated the same places.  
 
 # Minhashing 
-The matrix is businesses x customers with a 1 if a user rated a business. Implicit permutations (hash functions) are used to find the first row in which a user has a 1. The matrix that is formed is called a signature matrix. This signature matrix is much smaller than the original one. 
+The matrix is businesses x customers, with a 1 indicating that a user rated a business. A hundred implicit permutations (hash functions) are used to find the first row in which a user has a 1. The matrix that is formed is called a signature matrix. This signature matrix is much smaller than the original one (100 x customers). 
 
 # Local Sensitive Hashing
-The signature matrix is then divided in b bands with r rows per band. For each band, the parts of the columns of the signature matrix that belong to the band are hashed to a hash table with k buckets. We speak of a candidate pair if customers are hashed to the same bucket and the similarity of their signatures is larger than crit1. Finally we check the true similarity of all candidate pairs, which should be higher than crit2. 
+The signature matrix is then divided in b bands with r rows per band. For each band, the parts of the columns of the signature matrix that belong to the specific band are hashed to a hash table with k buckets. We speak of a candidate pair if customers are hashed to the same bucket and the similarity of their signatures is larger than a critical value: crit1. For all candidate pairs we check the similarity in the original dataset. This similarity must be higher than crit2.
 
 
 # Parameters
