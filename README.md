@@ -3,7 +3,7 @@ Minhashing, Local Sensitive Hashing
 
 This algorithm finds similar users in the Yelp dataset review data: https://www.kaggle.com/yelp-dataset/yelp-dataset. It uses Minhashing, Local Sensitive Hashing and the Jaccard similarity.
 
-The ratings are deleted and we want to find users that have rated the same restaurants (similar users). 
+The ratings itself are deleted. We subsequently only want to find users that have rated the same restaurants (similar users). 
 
 # Minhashing 
 The matrix is businesses x users with a 1 if a user rated a business. Implicit permutations (hash functions) are used to find the first row in which a user has a 1. The matrix that is formed is called a signature matrix. This signature matrix is much smaller than the original one. 
