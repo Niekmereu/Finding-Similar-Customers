@@ -14,7 +14,7 @@ The signature matrix is then divided in b bands with r rows per band. For each b
 
 # Parameters
 
-- n_naive: how many times must a customer must appear in the training set before we apply matrix factorization for this specfic customer.    It is generally a good idea to leave the customers that appear only once (n_naive = 2). 
+- N: how many times must a customer must appear in the training set before we apply matrix factorization for this specfic customer.    It is generally a good idea to leave the customers that appear only once (N = 2). 
 - crit1: critical similarity of the signature to become candidates
 - crit2: how similar must two users be with regard to their original date in order to be called similar
  
