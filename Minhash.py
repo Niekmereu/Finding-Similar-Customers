@@ -76,7 +76,7 @@ def main(d, n_naive, crit1, crit2):
     out = np.zeros(shape = (1, 2))
     #idx contains first row of each band
     idx = list(range(0, n_hash, r))
-    for i in range(1, bands+1):
+    for i in range(bands):
         print("Working on band number:", i )
         bucket_dict = dict()
         ID = np.vstack((signatures[idx[i]:idx[i]+r,], np.arange(0, n_users)))
