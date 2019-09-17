@@ -1,16 +1,20 @@
-# Recomender-System
-Recommender System
+# Finding Similar Users
+Minhashing, Local Sensitive Hashing
 
-This code contains a recommendation system for the Yelp dataset review data: https://www.kaggle.com/yelp-dataset/yelp-dataset. It uses matrix factorization and a simple gradient descent update rule. It uses cross-validation to verify the results. 
+This algorithm finds similar users in the Yelp dataset review data: https://www.kaggle.com/yelp-dataset/yelp-dataset. It uses Minhashing, Local Sensitive Hashing and the Jaccard similarity.
 
-The data are extremely sparse, which means that many customers have only rated a few places. Many of the customers that are found in the test set, do not appear in the training data. To circumvent this, we alter our approach. We introduce a new variable (n_naive), which indicates how many times a customer must appear in the training data before we just plug in the grand mean as the prediction for this customer. In a similar way the grand mean is used for unseen customers (customers that appear in the test set, but not in the training set). 
+The ratings are deleted and we want to find users that have rated the same restaurants (similar users). 
 
-The test error is lower than the training error. This happens due to a more frequent imputation of the global mean in the test set than in the training set. The training error relies more on the matrix factorization process than the test error. The sparsity of the data is a problem here. 
+# Minhashing 
+The matrix is businesses x users with a 1 if a user rated a business. Implicit permutations (hash functions) are used to find the first row in which a user has a 1. The matrix that is formed is called a signature matrix. This signature matrix is much smaller than the original one. 
+
+#Local Sensitive Hashing
+The signature matrix is then divided in b bands with r rows per band. For each band, the parts of the columns of the signature matrix that belong to the band are hashed to a hash table with k buckets. We speak of a candidate pair if users are hashed to the same bucket and the similarity of their signatures is larger than crit1. Finally we check the true similarity of all candidate pairs, which should be higher than crit2. 
+
 
 # Parameters
-- eeta: step size
-- l: penalization factor to prevent overfitting
-- n_naive: how many times must a customer must appear in the training set before we apply matrix factorization for this specfic customer.    It is generally a good idea to leave the customers that appear only once (n_naive = 2). 
-- k: the dimensionality of matrix factorization
-- iterations: how many times the training set is iterated over 
 
+- n_naive: how many times must a customer must appear in the training set before we apply matrix factorization for this specfic customer.    It is generally a good idea to leave the customers that appear only once (n_naive = 2). 
+- crit1: critical similarity of the signature to become candidates
+- crit2: how similar must two users be with regard to their original date in order to be called similar
+ 
