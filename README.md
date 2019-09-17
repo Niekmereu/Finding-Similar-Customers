@@ -8,7 +8,7 @@ The ratings are deleted and we want to find users that have rated the same resta
 # Minhashing 
 The matrix is businesses x users with a 1 if a user rated a business. Implicit permutations (hash functions) are used to find the first row in which a user has a 1. The matrix that is formed is called a signature matrix. This signature matrix is much smaller than the original one. 
 
-#Local Sensitive Hashing
+# Local Sensitive Hashing
 The signature matrix is then divided in b bands with r rows per band. For each band, the parts of the columns of the signature matrix that belong to the band are hashed to a hash table with k buckets. We speak of a candidate pair if users are hashed to the same bucket and the similarity of their signatures is larger than crit1. Finally we check the true similarity of all candidate pairs, which should be higher than crit2. 
 
 
